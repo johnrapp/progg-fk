@@ -1,0 +1,20 @@
+F2:
+.getEntrySet()
+
+F3:
+e1.getValue().compareTo(e2.getValue());
+
+F4:
+
+.scrollTo()
+
+.setOnAction()
+
+.getContent()
+
+.getChildren().addAll()
+
+F5:
+Något lyssnar på ObservableList att den uppdateras
+
+F6:

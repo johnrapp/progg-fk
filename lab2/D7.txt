@@ -1,0 +1,10 @@
+
+- Japp!
+
+- Fördelar: Inte lika många metoder implementerade => effektiv om bara detta vi behöver
+  Nackdelar: Inte lika många metoder implementerade. Något att underhålla och dokumentera.
+
+- Kan vara olämpligt om vi bara anväder en liten del av allt klassen kan göra, svårt att hålla kolla
+  på vad vi faktiskt använder till
+
+- Nepp! Bara testat några scenarion. Borde täcka det mesta i praktiken dock!
