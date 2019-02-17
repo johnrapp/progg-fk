@@ -1,8 +1,0 @@
-F2
-a) null
-b) last.next
-c) last.next.element
-
-F3
-a) assertFalse(string, cond)
-b) assertArrayEquals(string, a1, a2)
