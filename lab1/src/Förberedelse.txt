@@ -1,0 +1,16 @@
+F1
+a) 20 st
+b) Ja
+
+F2
+a) 10 st
+b) Nej
+
+F3
+String, Integer
+
+F4
+7
+
+F5
+containsKey
