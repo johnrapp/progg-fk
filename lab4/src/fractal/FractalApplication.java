@@ -26,6 +26,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import koch.Koch;
+import mountain.Mountain;
+import mountain.Point;
 
 public class FractalApplication extends Application {
 	private Fractal[] fractals;
@@ -44,8 +46,13 @@ public class FractalApplication extends Application {
 
 	@Override
 	public void start(Stage stage) {
-		fractals = new Fractal[1];
-		fractals[0] = new Koch(300);	
+		fractals = new Fractal[2];
+		fractals[0] = new Mountain(
+			new Point(50, 600 - 150),
+			new Point(200, 600 - 500),
+			new Point(500, 600 - 100)
+		);
+		fractals[1] = new Koch(300);
 		actFractal = fractals[0];
 		BorderPane root = new BorderPane();
 		root.setBottom(addButtonBox());
@@ -181,14 +188,14 @@ public class FractalApplication extends Application {
 		public LineCountLabel() {
 			Timeline timeline = new Timeline(
 					new KeyFrame(Duration.seconds(0),
-							new EventHandler<ActionEvent>() {
+						new EventHandler<>() {
 						@Override public void handle(ActionEvent actionEvent) {
 							if(tg != null){
 								setText("antal linjer: " + tg.getLineCount());
 							}
 						}
 					}
-							),
+					),
 							new KeyFrame(Duration.millis(100))
 					);
 			timeline.setCycleCount(Animation.INDEFINITE);
