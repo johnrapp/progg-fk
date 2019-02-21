@@ -1,0 +1,5 @@
+- Fattar ej! :)
+
+- Blir kortare kod, många callbacks
+
+- ListView lyssnar på ObservableList och uppdaterar när något händer
