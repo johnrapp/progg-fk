@@ -155,7 +155,6 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 		}
 	}
 
-
 	private static class QueueNode<E> {
 		E element;
 		QueueNode<E> next;
@@ -165,5 +164,4 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 			next = null;
 		}
 	}
-
 }

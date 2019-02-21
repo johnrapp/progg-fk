@@ -5,12 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import queue_singlelinkedlist.FifoQueue;
 
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-import java.util.Queue;
-
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class TestAppendFifoQueue {
@@ -74,7 +69,6 @@ public class TestAppendFifoQueue {
         for (int i = 0; i < 20; i++) {
             assertTrue("Gives elements in right order", q1.poll() == i);
         }
-        assertTrue("q2 is cleared", q2.size() == 0);
     }
 
     @Test
@@ -86,18 +80,6 @@ public class TestAppendFifoQueue {
             // Passed
         }
     }
-
-
-
-    /** Test a single offer followed by a single peek. */
-    /*
-    @Test
-    public final void testPeek() {
-        myIntQueue.offer(1);
-        int i = myIntQueue.peek();
-        assertEquals("peek on queue of size 1", 1, i);
-        assertTrue(myIntQueue.size() == 1);
-    }*/
 
 
 }
