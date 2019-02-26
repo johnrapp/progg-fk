@@ -3,10 +3,14 @@ package mountain;
 import fractal.Fractal;
 import fractal.TurtleGraphics;
 
+import java.util.HashMap;
+
 public class Mountain extends Fractal {
 
-    public Point a, b, c;
-    public double dev;
+    private Point a, b, c;
+    private double dev;
+
+    private HashMap<Side, Point> midpoints = new HashMap<>();
 
     public Mountain(Point a, Point b, Point c, double dev) {
         this.a = a;
@@ -25,6 +29,20 @@ public class Mountain extends Fractal {
         fractalTriangle(g, order, a, b, c);
     }
 
+    private Point getMidpoint(Point a, Point b, int order) {
+        Side s = new Side(a, b);
+        Point midpoint = midpoints.get(s);
+        if (midpoint == null) {
+            midpoint = RandomUtilities.offset(Point.between(a, b), dev, this.order - order);
+            midpoints.put(s, midpoint);
+        } else {
+            //midpoints.remove(s, midpoint);
+        }
+        return midpoint;
+    }
+
+
+
     private void fractalTriangle(TurtleGraphics g, int order, Point a, Point b, Point c) {
         if (order == 0) {
             g.moveTo(a.getX(), a.getY());
@@ -32,9 +50,9 @@ public class Mountain extends Fractal {
             g.forwardTo(c.getX(), c.getY());
             g.forwardTo(a.getX(), a.getY());
         } else {
-            Point ab = RandomUtilities.offset(Point.between(a, b), dev, order);
-            Point ac = RandomUtilities.offset(Point.between(a, c), dev, order);
-            Point bc = RandomUtilities.offset(Point.between(b, c), dev, order);
+            Point ab = getMidpoint(a, b, order);
+            Point ac = getMidpoint(a, c, order);
+            Point bc = getMidpoint(b, c, order);
 
             // Top
             fractalTriangle(g, order - 1, ab, b, bc);

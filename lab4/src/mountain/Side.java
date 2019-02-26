@@ -15,6 +15,11 @@ public class Side {
 
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj);
+        if (!(obj instanceof Side)) {
+            return  false;
+        }
+        Side s = (Side) obj;
+
+        return (s.a == this.a && s.b == this.b) || (s.b == this.a && s.a == this.b);
     }
 }
