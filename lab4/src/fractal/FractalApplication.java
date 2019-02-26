@@ -50,7 +50,8 @@ public class FractalApplication extends Application {
 		fractals[0] = new Mountain(
 			new Point(50, 600 - 150),
 			new Point(200, 600 - 500),
-			new Point(500, 600 - 100)
+			new Point(500, 600 - 100),
+			20
 		);
 		fractals[1] = new Koch(300);
 		actFractal = fractals[0];

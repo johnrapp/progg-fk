@@ -6,11 +6,13 @@ import fractal.TurtleGraphics;
 public class Mountain extends Fractal {
 
     public Point a, b, c;
+    public double dev;
 
-    public Mountain(Point a, Point b, Point c) {
+    public Mountain(Point a, Point b, Point c, double dev) {
         this.a = a;
         this.b = b;
         this.c = c;
+        this.dev = dev;
     }
 
     @Override
@@ -23,16 +25,16 @@ public class Mountain extends Fractal {
         fractalTriangle(g, order, a, b, c);
     }
 
-    public void fractalTriangle(TurtleGraphics g, int order, Point a, Point b, Point c) {
+    private void fractalTriangle(TurtleGraphics g, int order, Point a, Point b, Point c) {
         if (order == 0) {
             g.moveTo(a.getX(), a.getY());
             g.forwardTo(b.getX(), b.getY());
             g.forwardTo(c.getX(), c.getY());
             g.forwardTo(a.getX(), a.getY());
         } else {
-            Point ab = Point.middle(a, b);
-            Point ac = Point.middle(a, c);
-            Point bc = Point.middle(b, c);
+            Point ab = RandomUtilities.offset(Point.between(a, b), dev, order);
+            Point ac = RandomUtilities.offset(Point.between(a, c), dev, order);
+            Point bc = RandomUtilities.offset(Point.between(b, c), dev, order);
 
             // Top
             fractalTriangle(g, order - 1, ab, b, bc);

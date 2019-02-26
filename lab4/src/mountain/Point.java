@@ -35,7 +35,7 @@ public class Point {
 		}
 	}
 
-	public static Point middle(Point a, Point b) {
+	public static Point between(Point a, Point b) {
 		return new Point((a.getX() + b.getX()) / 2, (a.getY() + b.getY()) / 2);
 	}
 
