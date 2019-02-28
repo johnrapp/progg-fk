@@ -36,11 +36,10 @@ public class Mountain extends Fractal {
             midpoint = RandomUtilities.offset(Point.between(a, b), dev, this.order - order);
             midpoints.put(s, midpoint);
         } else {
-            //midpoints.remove(s, midpoint);
+            midpoints.remove(s, midpoint);
         }
         return midpoint;
     }
-
 
 
     private void fractalTriangle(TurtleGraphics g, int order, Point a, Point b, Point c) {
