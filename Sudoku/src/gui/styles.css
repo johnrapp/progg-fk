@@ -1,0 +1,7 @@
+SudokuCell {
+    -fx-font-size: 30;
+    -fx-alignment: center;
+}
+SudokuCell.alternative {
+    -fx-background-color: #FF7F50;
+}
