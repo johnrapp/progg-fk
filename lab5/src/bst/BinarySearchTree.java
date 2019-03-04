@@ -17,7 +17,38 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 	 * @return true if the the element was inserted
 	 */
 	public boolean add(E x) {
-		return false;
+		if (root == null) {
+			root = new BinaryNode<>(x);
+            size++;
+            return true;
+		} else {
+			return add(root, x);
+		}
+	}
+
+	private boolean add(BinaryNode<E> node, E x) {
+		int cmp = x.compareTo(node.element);
+		if (cmp > 0) {
+			// x ">" element
+			if (node.right != null) {
+				add(node.right, x);
+			} else {
+			    size++;
+				node.right = new BinaryNode<>(x);
+			}
+		} else if (cmp < 0) {
+			// x "<" element
+			if (node.left != null) {
+				add(node.left, x);
+			} else {
+                size++;
+                node.left = new BinaryNode<>(x);
+			}
+		} else {
+			// x "=" element, i.e duplicate
+			return false;
+		}
+		return true;
 	}
 	
 	/**
@@ -25,7 +56,14 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 	 * @return the height of the tree
 	 */
 	public int height() {
-		return 0;
+		return height(root);
+	}
+
+	private int height(BinaryNode<E> node) {
+	    if (node == null) {
+	        return 0;
+        }
+	    return 1 + Math.max(height(node.left), height(node.right));
 	}
 	
 	/**
@@ -33,14 +71,24 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 	 * @return the number of elements in this tree
 	 */
 	public int size() {
-		return 0;
+		return size;
 	}
 	
 	/**
 	 * Print tree contents in inorder.
 	 */
 	public void printTree() {
+        print(root);
+	}
 
+	private void print(BinaryNode<E> node) {
+	    if (node.left != null) {
+            print(node.left);
+        }
+		System.out.println(node.element);
+        if (node.right != null) {
+            print(node.right);
+        }
 	}
 
 	/** 
