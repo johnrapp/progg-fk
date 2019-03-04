@@ -17,26 +17,19 @@ public class TestSudoku {
     }
 
     @Test
-    public final void validateEmpty() {
+    public final void regionIndex() {
         SudokuSolver solver = new SudokuSolver(new int[9][9]);
-        assertTrue(solver.boardIsValid());
+
+        assertEquals(solver.regionIndex(0, 0), 0);
+        assertEquals(solver.regionIndex(3, 1), 3);
+        assertEquals(solver.regionIndex(3, 4), 4);
+        assertEquals(solver.regionIndex(8, 5), 7);
     }
+
     @Test
-    public final void validateNonValidBoard() {
-        SudokuSolver solver = new SudokuSolver(
-         9,0,0, 0,1,0, 0,0,0,
-                0,0,0, 0,0,0, 0,0,0,
-                9,1,0, 0,0,0, 0,0,0,
-
-                0,0,0, 0,0,0, 0,0,0,
-                0,0,0, 0,0,0, 0,0,0,
-                0,0,0, 0,0,0, 0,0,0,
-
-                0,0,0, 0,0,0, 0,0,0,
-                0,0,0, 0,0,0, 0,0,0,
-                0,0,0, 0,0,0, 0,0,0
-        );
-        assertFalse(solver.boardIsValid());
+    public final void solveEmpty() {
+        SudokuSolver solver = new SudokuSolver(new int[9][9]);
+        solver.solve();
     }
 
     @Test
@@ -52,17 +45,9 @@ public class TestSudoku {
 
                 4,1,5, 6,9,8, 2,3,7,
                 8,6,7, 4,3,2, 1,5,9,
-                9,2,3, 7,5,1, 4,8,6
+                9,2,3, 7,5,1, 4,0,0
         );
         assertTrue(solver.boardIsValid());
         solver.solve();
-        solver.printCells();
     }
-    /*
-    @Test
-    public final void solveEmpty() {
-        SudokuSolver solver = new SudokuSolver(new int[9][9]);
-        solver.solve();
-        solver.printCells();
-    }*/
 }

@@ -75,7 +75,7 @@ public class Controller {
             for (int j = 0; j < n; j++) {
                 SudokuCell cell = new SudokuCell(SIZE, GRID_GAP, i, j, n);
                 cells[i][j] = cell;
-                grid.add(cell, i, j);
+                grid.add(cell, j, i);
             }
         }
     }
