@@ -11,6 +11,9 @@ public class SudokuSolver {
     private int[][] colValueCounts = new int[n][n + 1];
     private int[][] regionValueCounts = new int[n][n + 1];
 
+    /**
+     * Create instance with given matrix of cell values
+     */
     public SudokuSolver(int[][] cellValues) {
         this.cells = cellValues;
         initCounts();
@@ -45,14 +48,14 @@ public class SudokuSolver {
     // Package-private for tests
     boolean boardIsValid() {
         return (
-            countsIsValid(rowValueCounts) &&
-            countsIsValid(colValueCounts) &&
-            countsIsValid(regionValueCounts)
+            noDuplicateValues(rowValueCounts) &&
+            noDuplicateValues(colValueCounts) &&
+            noDuplicateValues(regionValueCounts)
         );
     }
 
     // If there are more than one of any value > 0, the counts are not valid
-    private boolean countsIsValid(int[][] counts) {
+    private boolean noDuplicateValues(int[][] counts) {
         for (int i = 0; i < n ; i++) {
             // From 1 through 9
             for (int j = 1; j <= n ; j++) {
@@ -65,9 +68,8 @@ public class SudokuSolver {
     }
 
     /**
-     * Attempts to solve the given Sudoku
-     * If the Sudoku is solvable, the cells will be mutated and the solution may be read using getCellValues()
-     * If the Sudoku is not solvable, the cells will not be mutated and getCellValues() will return the original board
+     * Attempts to solve the given Sudoku.<br>
+     * If the Sudoku is solvable, the cells will be mutated and the solution may be read using {@link #getCellValues() getCellValues()}.
      * @return true if the Sudoku is solvable, otherwise false
      */
     public boolean solve() {
@@ -96,6 +98,7 @@ public class SudokuSolver {
 
         return false;
     }
+
     private boolean solveNext(int i, int j) {
         boolean lastCol = j == n - 1;
         boolean lastRow = i == n - 1;
@@ -130,8 +133,9 @@ public class SudokuSolver {
     }
 
     /**
-     * Gets the call values
-     * @return matrix of cell values
+     * Gets a matrix of cell values.<br>
+     * @return The cell values given in the constructor if {@link #solve() solve()} has not been called.
+     * <br> If {@link #solve() solve()} has been called and there exists a solution, returns the solution.
      */
     public int[][] getCellValues() {
         return cells;
