@@ -13,7 +13,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("sudoku.fxml"));
         primaryStage.setTitle("Sudoku");
 
-        Scene scene = new Scene(root, 600, 650);
+        Scene scene = new Scene(root, 600, 660);
         primaryStage.setScene(scene);
 
         scene.getStylesheets().add("gui/styles.css");
