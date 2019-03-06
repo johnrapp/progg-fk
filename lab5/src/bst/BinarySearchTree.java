@@ -95,9 +95,16 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 	 * Builds a complete tree from the elements in the tree.
 	 */
 	public void rebuild() {
-
+		E[] elements = toArray();
+		root = buildTree(elements, 0, size - 1);
 	}
-	
+
+	E[] toArray() {
+		E[] elements = (E[]) new Comparable[size];
+		toArray(root, elements, 0);
+		return elements;
+	}
+
 	/*
 	 * Adds all elements from the tree rooted at n in inorder to the array a
 	 * starting at a[index].
@@ -105,7 +112,19 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 	 * position in a).
 	 */
 	private int toArray(BinaryNode<E> n, E[] a, int index) {
-		return 0;
+		int nextIndex = index;
+
+		if (n.left != null) {
+			nextIndex = toArray(n.left, a, nextIndex);
+		}
+
+		a[nextIndex++] = n.element;
+
+		if (n.right != null) {
+			nextIndex = toArray(n.right, a, nextIndex);
+		}
+
+		return nextIndex;
 	}
 	
 	/*
@@ -114,7 +133,21 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 	 * Returns the root of tree.
 	 */
 	private BinaryNode<E> buildTree(E[] a, int first, int last) {
-		return null;
+		if (first == last) {
+			return new BinaryNode<>(a[first]);
+		}
+		int middle = first + ((last - first) + 1) / 2;
+		BinaryNode<E> node = new BinaryNode<>(a[middle]);
+
+		int leftLast = middle - 1;
+		node.left = buildTree(a, first, leftLast);
+
+		int rightFirst = middle + 1;
+		if (rightFirst <= last) {
+			node.right = buildTree(a, rightFirst, last);
+		}
+
+		return node;
 	}
 	
 
