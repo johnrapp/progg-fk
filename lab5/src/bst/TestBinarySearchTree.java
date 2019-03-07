@@ -4,7 +4,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class TestBinarySearchTree {
     private BinarySearchTree<Integer> emptyTree;
@@ -53,14 +55,15 @@ public class TestBinarySearchTree {
 
     @Test
     public void cantAddDuplicates() {
-        filledTree.add(2);
-        assertEquals(3, filledTree.size());
+        boolean added = filledTree.add(2);
+        assertEquals(4, filledTree.size());
+        assertFalse(added);
     }
 
     @Test
     public void toArrayLinearAdd() {
-        Integer[] expected = new Integer[5];
-        for (int i = 1; i <= 5; i++) {
+        Integer[] expected = new Integer[4];
+        for (int i = 1; i <= 4; i++) {
             emptyTree.add(i);
             expected[i - 1] = i;
         }

@@ -121,7 +121,7 @@ public class SudokuSolver {
     private void makeMove(int i, int j, int attempt) {
         cells[i][j] = attempt;
         rowValueCounts[i][attempt]++;
-        colValueCounts[j][attempt]++;
+        colValueCounts[j][attempt]++    ;
         regionValueCounts[regionIndex(i, j)][attempt]++;
     }
 
